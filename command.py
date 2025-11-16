@@ -1,4 +1,5 @@
 import os
+import datetime
 
 class CommandHandler:
     def __init__(self):
@@ -10,6 +11,7 @@ class CommandHandler:
             "hey": self.cmd_hi,
             "clear": self.cmd_clear,
             "cls": self.cmd_clear,
+           "time": self.cmd_time,
             "help": self.cmd_help,
         }
 
@@ -38,6 +40,10 @@ class CommandHandler:
     def cmd_clear(self, args):
         os.system("cls" if os.name == "nt" else "clear")
         return ""
+
+    def cmd_time(self,args):
+        x=datetime.datetime.now()
+        return x.strftime("%H:%M")
 
     def cmd_help(self, args):
         # ساختن متن راهنما
