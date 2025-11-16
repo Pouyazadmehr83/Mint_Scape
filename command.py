@@ -8,8 +8,9 @@ class CommandHandler:
             "hi": self.cmd_hi,
             "hello": self.cmd_hi,
             "hey": self.cmd_hi,
-            "clear": self.cmd_clear,   # ← دستور جدید
-            "cls": self.cmd_clear      # ← اختیاری، مثل ویندوز
+            "clear": self.cmd_clear,
+            "cls": self.cmd_clear,
+            "help": self.cmd_help,
         }
 
     def run(self, command_line):
@@ -35,6 +36,10 @@ class CommandHandler:
         return "Hello there!"
 
     def cmd_clear(self, args):
-        # clearscreen Windows = cls, Mac/Linux = clear
         os.system("cls" if os.name == "nt" else "clear")
-        return ""   # چیزی چاپ نکند
+        return ""
+
+    def cmd_help(self, args):
+        # ساختن متن راهنما
+        command_list = ", ".join(self.commands.keys())
+        return f"Available commands: {command_list}"
