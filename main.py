@@ -1,15 +1,30 @@
 from command import CommandHandler
+from banner import show_banner
+def main():
+    
+    show_banner()
 
-cmd = CommandHandler()
+    handler = CommandHandler()
 
-#print("Type a command (echo, print, hi, hello, hey) - type exit to quit")
+    print("=== Mint Scape CLI ===")
+    print("Type 'help' for commands.\n")
 
-while True:
-    user_input = input("> ")
 
-    if user_input.lower() in ["exit", "quit"]:
-        print("Bye!")
-        break
+    while True:
+        try:
+            user_input = input("> ")
+        except (EOFError, KeyboardInterrupt):
+            print("\nBye!")
+            break
 
-    result = cmd.run(user_input)
-    print(result)
+        result = handler.run(user_input)
+        if result is not None:
+            print(result)
+
+        if user_input.strip() == "exit":
+            print("Bye!")
+            break
+
+
+if __name__ == "__main__":
+    main()
